@@ -1,1 +1,28 @@
-# Your Solution
+version: '3.8'
+
+services:
+  book_catalog:
+    build: ./book_catalog
+    platform: linux/amd64
+    container_name: book_catalog
+    environment:
+      DATABASE_URL: "postgresql://eisenlaisit722week7partnew1_user:nllBvBrw8A1mSGXm6fpT7Cs4bgi66rhk@dpg-crhkm208fa8c73bcmvug-a.oregon-postgres.render.com/eisenlaisit722week7partnew1"
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  inventory_management:
+    build: ./inventory_management
+    platform: linux/amd64
+    container_name: inventory_management
+    environment:
+      DATABASE_URL: "postgresql://eisenlaisit722week7partnew1_user:nllBvBrw8A1mSGXm6fpT7Cs4bgi66rhk@dpg-crhkm208fa8c73bcmvug-a.oregon-postgres.render.com/eisenlaisit722week7partnew1"
+    ports:
+      - "8001:8001"  
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
